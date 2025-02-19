@@ -1,0 +1,11 @@
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/Demo2Application.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/controllers/ProductRestController.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/entities/Product.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/graphql/ProductInput.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/graphql/ProductResolver.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/repos/ProductRepository.java
+/Users/percival.lucena/java/springboot-apis/src/main/java/com/example/demo/services/ProductService.java
+/Users/percival.lucena/java/springboot-apis/target/generated-sources/com/example/demo/codegen/DgsConstants.java
+/Users/percival.lucena/java/springboot-apis/target/generated-sources/com/example/demo/codegen/Generated.java
+/Users/percival.lucena/java/springboot-apis/target/generated-sources/com/example/demo/codegen/types/Product.java
+/Users/percival.lucena/java/springboot-apis/target/generated-sources/com/example/demo/codegen/types/ProductInput.java
