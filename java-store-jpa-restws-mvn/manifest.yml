@@ -1,0 +1,9 @@
+applications:
+- path: target/ECMApp-1.0-SNAPSHOT.war
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: ECMApp
+  host: ECMApp
+  disk_quota: 1024M
+  buildpack: java_buildpack

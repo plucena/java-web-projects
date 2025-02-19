@@ -1,0 +1,87 @@
+<md-card>
+    <md-card-content>
+
+        <md-button id="button-novoProduto" class="md-fab md-fab-bottom-right md-primary" aria-label="Add" ng-click="novoProduto()">
+            <md-icon md-svg-icon="content:ic_add_24px" aria-label="Plus"></md-icon>
+        </md-button>
+
+
+        <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndexProduto">
+            <md-tab label="Em Produção" md-on-select="setSelectedIndexProduto(0)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(produtos|filter:{status:'EM_PRODUCAO'}).length == 0">Não há produtos em produção.</p>
+                    <md-table-container ng-if="(produtos|filter:{status:'EM_PRODUCAO'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Receita</span></th>
+                                    <th md-column><span>Lote(s)</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="produto in produtos | filter: { status: 'EM_PRODUCAO' }" ng-click="editarProduto(produto.sku)" id="{{produto.sku}}">
+                                    <td md-cell>{{produto.sku}}</td>
+                                    <td md-cell>{{produto.preco}}</td>
+                                    <td md-cell>{{produto.receita.nome}} (SKU: {{produto.receita.sku}})</td>
+                                    <td md-cell>
+                                        <span ng-repeat="lote in produto.lotes">
+                                            <br>
+                                            SKU: {{lote.sku}}<br>
+                                            Matéria-prima: {{lote.materiaPrima.nome}} (SKU: {{lote.materiaPrima.sku}})<br>
+                                            Fornecedor: {{lote.fornecedor.nome}} (CNPJ: {{lote.fornecedor.cnpj}})<br><br ng-if="$last">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+                
+
+            <md-tab label="Em Estoque" md-on-select="setSelectedIndexProduto(1)">
+                <md-content class="md-padding">
+                    
+                    <p ng-show="!isLoading" ng-if="(produtos|filter:{status:'EM_ESTOQUE'}).length == 0">Não há produtos em estoque.</p>
+                    <md-table-container ng-if="(produtos|filter:{status:'EM_ESTOQUE'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade Produzida</span></th>
+                                    <th md-column><span>Receita</span></th>
+                                    <th md-column><span>Lote(s)</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="produto in produtos | filter: { status: 'EM_ESTOQUE' }" ng-click="editarProduto(produto.sku)" id="{{produto.sku}}">
+                                    <td md-cell>{{produto.sku}}</td>
+                                    <td md-cell>{{produto.preco}}</td>
+                                    <td md-cell>{{produto.quantidadeProduzida}}</td>
+                                    <td md-cell>{{produto.receita.nome}} (SKU: {{produto.receita.sku}})</td>
+                                    <td md-cell>
+                                        <span ng-repeat="lote in produto.lotes">
+                                            <br>
+                                            SKU: {{lote.sku}}<br>
+                                            Matéria-prima: {{lote.materiaPrima.nome}} (SKU: {{lote.materiaPrima.sku}})<br>
+                                            Fornecedor: {{lote.fornecedor.nome}} (CNPJ: {{lote.fornecedor.cnpj}})<br><br ng-if="$last">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+        </md-tabs>
+
+        <md-progress-linear md-mode="indeterminate" ng-show="isLoading"></md-progress-linear>
+
+    </md-card-content>
+</md-card>

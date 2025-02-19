@@ -1,0 +1,85 @@
+<md-card>
+    <md-card-content>
+    
+        <form name="produtoForm" ng-submit="salvarProduto()" ng-show="!isLoading">
+
+            <md-input-container class="md-block" ng-if="edicao">
+                <label>SKU</label>
+                <input id="input-sku" name="sku" ng-model="produto.sku" type="text" disabled>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Preço (obrigatório)</label>
+                <input id="input-preco" name="preco" required min="0" ng-model="produto.preco" type="number" ng-disabled="edicao">
+                <div ng-messages="produtoForm.preco.$error" ng-if="produtoForm.preco.$dirty">
+                    <div ng-message="min">O preço não pode ser negativo!</div>
+                    <div ng-message="required">O preço é um campo obrigatório!</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>Receita (obrigatório)</label>
+                <md-progress-circular md-mode="indeterminate" ng-show="isLoadingReceitas"></md-progress-circular>
+                <md-select id="select-receita" name="produto.receita" required ng-model="produto.receita.sku" ng-change="listarLotes()" ng-show="!isLoadingReceitas" ng-disabled="edicao">
+                    <md-option ng-repeat="receita in receitas" value="{{receita.sku}}" id="receita-{{receita.sku}}">
+                        {{receita.nome}} (SKU: {{receita.sku}})
+                    </md-option>
+                </md-select>
+                <div ng-messages="produtoForm.receita.$error" ng-if="produtoForm.receita.$dirty">
+                    <div ng-message="required">Receita é um campo obrigatório!</div>
+                </div>
+            </md-input-container>
+
+            <div layout-gt-sm="row" class="md-inline-form" ng-repeat="lote in produto.lotes">
+
+                <md-input-container class="md-block" flex>
+                    <label>Lote 0{{$index + 1}}</label>
+                    <md-progress-circular md-mode="indeterminate" ng-show="isLoadingReceitas"></md-progress-circular>
+                    <md-select id="select-produto.lotes[{{$index}}].sku" name="produto.lotes[{{$index}}].sku" required ng-model="produto.lotes[$index].sku" ng-show="!isLoadingReceitas" disabled>
+                        <md-option value="{{lote.sku}}" id="lote-{{lote.sku}}">
+                            SKU: {{lote.sku}} (Quantidade: {{lote.quantidade}})
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+
+            <md-input-container ng-if="!edicao && (produto.receita && !produto.lotes.length)">
+                <p>Não há lotes disponíveis para produzir essa receita.</p>
+            </md-input-container>
+
+            <md-input-container ng-if="!edicao && (produto.receita && produto.lotes.length)">
+                <p>Poderão ser produzidos <b>{{quantidadeProduzida}}</b> produtos (estimativa).</p>
+            </md-input-container>
+
+            <md-input-container class="md-block" ng-if="edicao">
+                <md-radio-group ng-model="produto.status">
+                    <md-radio-button value="EM_PRODUCAO" class="md-primary" ng-disabled="emProducaoDisabled">
+                        Em Produção
+                    </md-radio-button>
+
+                    <md-radio-button value="EM_ESTOQUE" class="md-primary" ng-disabled="emEstoqueDisabled">
+                        Em Estoque
+                    </md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+
+            <md-input-container class="md-block" ng-if="edicao && produto.status == 'EM_ESTOQUE'">
+                <label>Quantidade produzida (obrigatório)</label>
+                <input id="input-quantidadeProduzida" name="quantidadeProduzida" required min="0" ng-model="produto.quantidadeProduzida" type="number" ng-disabled="emEstoqueDisabled">
+                <div ng-messages="produtoForm.quantidadeProduzida.$error" ng-if="produtoForm.quantidadeProduzida.$dirty">
+                    <div ng-message="min">A quantidade produzida não pode ser negativa!</div>
+                    <div ng-message="required">A quanidade produzida é um campo obrigatório!</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <md-button id="button-salvarProduto" class="md-raised md-primary" aria-label="Salvar" type="submit" ng-disabled="!produtoForm.$valid || !produto.lotes.length">{{buttonAction}}</md-button>
+            </md-input-container>
+
+        </form>
+
+        <md-progress-linear md-mode="indeterminate" ng-show="isLoading"></md-progress-linear>
+
+    </md-card-content>
+</md-card>

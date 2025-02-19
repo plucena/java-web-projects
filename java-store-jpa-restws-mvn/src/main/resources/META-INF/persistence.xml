@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="persistenceUnit"
+        transaction-type="RESOURCE_LOCAL">
+         <class>net.mybluemix.entity.Fornecedor</class>
+        <class>net.mybluemix.entity.ItemReceita</class>
+        <class>net.mybluemix.entity.Lote</class>
+        <class>net.mybluemix.entity.Produto</class>
+        <class>net.mybluemix.entity.Receita</class>
+        <class>net.mybluemix.entity.MateriaPrima</class>
+        <properties>
+ 
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://169.44.117.18:3306/ecm" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="unasp" />
+            <property name="hbm2ddl.auto" value="create" />
+ 
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+        </properties>
+ 
+    </persistence-unit>
+</persistence>

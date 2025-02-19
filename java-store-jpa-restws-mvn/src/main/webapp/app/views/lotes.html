@@ -1,0 +1,173 @@
+<md-card>
+    <md-card-content>
+
+        <md-button id="button-novoLote" class="md-fab md-fab-bottom-right md-primary" aria-label="Add" ng-click="novoLote()">
+            <md-icon md-svg-icon="content:ic_add_24px" aria-label="Plus"></md-icon>
+        </md-button>
+
+        <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndexLotes">
+            <md-tab label="Encomendados" md-on-select="setSelectedIndexLotes(0)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(lotes|filter:{status:'ENCOMENDADO'}).length == 0">Não há lotes encomendados.</p>
+                    <md-table-container ng-if="(lotes|filter:{status:'ENCOMENDADO'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade</span></th>
+                                    <th md-column><span>Fornecedor</span></th>
+                                    <th md-column><span>Matéria-prima</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="lote in lotes | filter: { status: 'ENCOMENDADO' }" ng-click="editarLote(lote.sku)" id="{{lote.sku}}">
+                                    <td md-cell>{{lote.sku}}</td>
+                                    <td md-cell>R$ {{lote.preco}}</td>
+                                    <td md-cell>{{lote.quantidade}} {{lote.unidade}}(s)</td>
+                                    <td md-cell>Nome: {{lote.fornecedor.nome}}
+                                    <br>CNPJ: {{lote.fornecedor.cnpj}}</td>
+                                    <td md-cell>Nome: {{lote.materiaPrima.nome}}
+                                    <br>SKU: {{lote.materiaPrima.sku}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Em Estoque" md-on-select="setSelectedIndexLotes(1)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(lotes|filter:{status:'EM_ESTOQUE'}).length == 0">Não há lotes em estoque.</p>
+                    <md-table-container ng-if="(lotes|filter:{status:'EM_ESTOQUE'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade</span></th>
+                                    <th md-column><span>Fornecedor</span></th>
+                                    <th md-column><span>Matéria-prima</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="lote in lotes | filter: { status: 'EM_ESTOQUE' }" ng-click="editarLote(lote.sku)" id="{{lote.sku}}">
+                                    <td md-cell>{{lote.sku}}</td>
+                                    <td md-cell>R$ {{lote.preco}}</td>
+                                    <td md-cell>{{lote.quantidade}} {{lote.unidade}}(s)</td>
+                                    <td md-cell>Nome: {{lote.fornecedor.nome}}
+                                    <br>CNPJ: {{lote.fornecedor.cnpj}}</td>
+                                    <td md-cell>Nome: {{lote.materiaPrima.nome}}
+                                    <br>SKU: {{lote.materiaPrima.sku}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Em Produção" md-on-select="setSelectedIndexLotes(2)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(lotes|filter:{status:'EM_PRODUCAO'}).length == 0">Não há lotes em produção.</p>
+                    <md-table-container ng-if="(lotes|filter:{status:'EM_PRODUCAO'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade</span></th>
+                                    <th md-column><span>Fornecedor</span></th>
+                                    <th md-column><span>Matéria-prima</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="lote in lotes | filter: { status: 'EM_PRODUCAO' }" ng-click="editarLote(lote.sku)" id="{{lote.sku}}">
+                                    <td md-cell>{{lote.sku}}</td>
+                                    <td md-cell>R$ {{lote.preco}}</td>
+                                    <td md-cell>{{lote.quantidade}} {{lote.unidade}}(s)</td>
+                                    <td md-cell>Nome: {{lote.fornecedor.nome}}
+                                    <br>CNPJ: {{lote.fornecedor.cnpj}}</td>
+                                    <td md-cell>Nome: {{lote.materiaPrima.nome}}
+                                    <br>SKU: {{lote.materiaPrima.sku}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Finalizados" md-on-select="setSelectedIndexLotes(3)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(lotes|filter:{status:'FINALIZADO'}).length == 0">Não há lotes finalizados.</p>
+                    <md-table-container ng-if="(lotes|filter:{status:'FINALIZADO'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade</span></th>
+                                    <th md-column><span>Fornecedor</span></th>
+                                    <th md-column><span>Matéria-prima</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="lote in lotes | filter: { status: 'FINALIZADO' }" ng-click="editarLote(lote.sku)" id="{{lote.sku}}">
+                                    <td md-cell>{{lote.sku}}</td>
+                                    <td md-cell>R$ {{lote.preco}}</td>
+                                    <td md-cell>{{lote.quantidade}} {{lote.unidade}}(s)</td>
+                                    <td md-cell>Nome: {{lote.fornecedor.nome}}
+                                    <br>CNPJ: {{lote.fornecedor.cnpj}}</td>
+                                    <td md-cell>Nome: {{lote.materiaPrima.nome}}
+                                    <br>SKU: {{lote.materiaPrima.sku}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Cancelados" md-on-select="setSelectedIndexLotes(4)">
+                <md-content class="md-padding">
+
+                    <p ng-show="!isLoading" ng-if="(lotes|filter:{status:'CANCELADO'}).length == 0">Não há lotes cancelados.</p>
+                    <md-table-container ng-if="(lotes|filter:{status:'CANCELADO'}).length != 0">
+                        <table md-table>
+                            <thead md-head>
+                                <tr md-row>
+                                    <th md-column md-numeric><span>SKU</span></th>
+                                    <th md-column><span>Preço</span></th>
+                                    <th md-column><span>Quantidade</span></th>
+                                    <th md-column><span>Fornecedor</span></th>
+                                    <th md-column><span>Matéria-prima</span></th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="lote in lotes | filter: { status: 'CANCELADO' }" ng-click="editarLote(lote.sku)" id="{{lote.sku}}">
+                                    <td md-cell>{{lote.sku}}</td>
+                                    <td md-cell>R$ {{lote.preco}}</td>
+                                    <td md-cell>{{lote.quantidade}} {{lote.unidade}}(s)</td>
+                                    <td md-cell>Nome: {{lote.fornecedor.nome}}
+                                    <br>CNPJ: {{lote.fornecedor.cnpj}}</td>
+                                    <td md-cell>Nome: {{lote.materiaPrima.nome}}
+                                    <br>SKU: {{lote.materiaPrima.sku}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                </md-content>
+            </md-tab>
+        </md-tabs>
+
+        <md-progress-linear md-mode="indeterminate" ng-show="isLoading"></md-progress-linear>
+
+    </md-card-content>
+</md-card>

@@ -1,0 +1,75 @@
+html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+/* SideNav */
+
+h1 {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    font-weight: 100;
+    font-size: 42px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    margin: 0;
+    cursor: default;
+}
+
+h1 span {
+    font-style: italic;
+}
+
+md-sidenav  {
+    height:100%;
+    max-width: 250px;
+}
+
+md-sidenav md-list.navegacao md-list-item.active {
+    background-color: rgba(158,158,158, 0.2);
+}
+
+md-sidenav md-list.navegacao md-list-item a {
+    margin: 0 !important;
+    padding-top: 8px !important;
+}
+
+md-sidenav md-list.navegacao md-list-item a md-icon {
+    padding: 0 0 0 24px;
+}
+
+/* Content */
+
+#content {
+    background: #efefef;
+}
+
+.md-button.md-fab.md-fab-bottom-right {
+    top: auto;
+    right: 32px;
+    bottom: 16px;
+    left: auto;
+    position: fixed;
+}
+
+md-content {
+    height:100%;
+    overflow-x: hidden;
+}
+
+md-content md-card {
+    margin:24px;
+}
+
+tbody tr:hover {
+    cursor: pointer;
+    background-color: rgba(158,158,158, 0.2);
+}
+
+/* Forms */
+
+md-toast.md-success-toast-theme .md-toast-content {
+    background-color: #009688;
+}
