@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET / controllers.Assets.at(path="/public", file="index.html")
+
+GET /api-docs controllers.ApiHelpController.getResources
+
+#POST /login controllers.SecurityController.login() 
+#POST /logout controllers.SecurityController.logout()
+
+GET /api-docs/api/produto controllers.ApiHelpController.getResource(path = "/api/produto") 
+GET /api-docs/api/carrinho controllers.ApiHelpController.getResource(path = "/api/carrinho") 
+
+#GET     /api-docs               		 controllers.ApiHelpController.getResources
+
+GET     /Carrinho/:email                 controllers.CarrinhoController.getCarrinho(email: String)
+GET     /Carrinho/add/:email/:produto    controllers.CarrinhoController.addCarrinho(email: String, produto:Long)
+GET     /Carrinho/remove/:email/:produto controllers.CarrinhoController.removeCarrinho(email: String, produto:Long)
+
+
+GET     /Produto/:id                     controllers.ProdutoController.getProduto(id: Long)
+GET     /Produto                         controllers.ProdutoController.getProdutos()
+POST    /Produto					     controllers.ProdutoController.saveProduto()
+
+GET     /Usuario/:email                  controllers.UsuarioController.getUsuario(email: String)
+GET     /Usuario                         controllers.UsuarioController.getUsuarios()
+POST    /Usuario					     controllers.UsuarioController.saveUsuario()
+
+	
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

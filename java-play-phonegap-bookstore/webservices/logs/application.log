@@ -1,0 +1,21 @@
+2016-03-10 11:24:21,618 - [INFO] - from play in pool-4-thread-1 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2016-03-10 11:24:51,070 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:mysql://localhost:3306/books] bound to JNDI as bookDS
+
+2016-03-10 11:24:51,923 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost:3306/books
+
+2016-03-10 11:24:53,245 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2016-03-10 11:31:20,220 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:mysql://localhost:3306/books] bound to JNDI as bookDS
+
+2016-03-10 11:31:20,280 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:mysql://localhost:3306/books
+
+2016-03-10 11:31:20,488 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
